@@ -4,7 +4,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -38,6 +43,12 @@ public class LoginTests {
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
 		driver.get(baseUrl);
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"responsive\"]/li[8]/a")));
+		loginPOM.clickSignInBtn(); 
+		loginPOM.sendUserName("admin");
+		loginPOM.sendPassword("admin@123");
+		loginPOM.clickLoginBtn();
 	}
 	
 	@AfterMethod
@@ -47,9 +58,14 @@ public class LoginTests {
 	}
 	@Test
 	public void validLoginTest() {
-		loginPOM.sendUserName("admin");
-		loginPOM.sendPassword("admin@123");
-		loginPOM.clickLoginBtn(); 
-		screenShot.captureScreenShot("First");
+
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"menu-posts\"]/a/div[3]")));
+		loginPOM.clickPostsBtn(); 
+		screenShot.captureScreenShot("1");
+		WebElement title = driver.findElement(By.xpath("//*[@id=\"post-4081\"]/td[1]"));
+		Actions actions = new Actions(driver);
+		actions.moveToElement(title).build().perform();
+		loginPOM.clickTrashBtn();
 	}
 }
