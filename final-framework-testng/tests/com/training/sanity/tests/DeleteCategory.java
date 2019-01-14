@@ -20,6 +20,9 @@ import com.training.pom.DeleteCategoryPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
+/*Author: Sanjit Tripathy (IBM)
+Contact: +91-8888862990
+Purpose of this code: TO Verify whether application allows admin to delete category from the categories page*/
 public class DeleteCategory 
 {
 
@@ -40,6 +43,7 @@ public class DeleteCategory
 
 	@BeforeMethod
 	public void setUp() throws Exception {
+		//Before method executes the basic operations like opening Link & Logging in..
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		DeleteCategoryPOM = new DeleteCategoryPOM(driver); 
 		baseUrl = properties.getProperty("baseURL");
@@ -64,23 +68,18 @@ public class DeleteCategory
 	{
 		DeleteCategoryPOM.clickPostsBtn(); 
 		DeleteCategoryPOM.clcikCategoriesBtn();
-		screenShot.captureScreenShot("DeleteCategoryPageScreenshot"); //Test Case: Categories page with Add New Category module along with existing categories should get displayed
+		//Test Case: Categories page with Add New Category module along with existing categories should get displayed
+		screenShot.captureScreenShot("DeleteCategoryPageScreenshot"); 
 		String PageTitle = driver.getTitle();
-		System.out.println("Categories page is being displayed, Page Title: " +PageTitle); //Test Case: Categories page should be displayed
+		//Test Case: Categories page should be displayed
+		System.out.println("Categories page is being displayed, Page Title: " +PageTitle); 
 		
 
 		Thread.sleep(3000);
-		//Below code is to find first cell of the table before deletion.
-		WebElement BefrDelTbl = driver.findElement(By.xpath("//*[@id=\"posts-filter\"]"));
-		List < WebElement > rows_table = BefrDelTbl.findElements(By.tagName("tr"));
-		for (int row = 1; row < 2; row++) 
-		{
-		List < WebElement > Columns_row = rows_table.get(row).findElements(By.tagName("td"));
-			 for (int column = 0; column < 1; column++) 
-			 {
-		celltext1 = Columns_row.get(column).getText(); //To get the text of first cell of the table, asserted at the end.
-		
-		List<WebElement> checkbox = driver.findElements(By.xpath("//input[@type='checkbox' and @name='delete_tags[]']"));// Finding common attributes of the checkoxes
+		////To get the text of first cell of the table, asserted at the end.
+		celltext1 = driver.findElement(By.xpath("//tbody/tr/td")).getText(); 
+		// Finding common attributes of the checkoxes
+		List<WebElement> checkbox = driver.findElements(By.xpath("//input[@type='checkbox' and @name='delete_tags[]']"));
 		for (int i=0; i<checkbox.size(); i++)
 		{
 			WebElement cbox = checkbox.get(i);
@@ -93,29 +92,23 @@ public class DeleteCategory
 			
 		}
 		DeleteCategoryPOM.clcikBulkBtn();
-		screenShot.captureScreenShot("BulkAction-Delete link Screenshot"); //Test Case: BulkAction-Delete link should display
+		//Test Case: BulkAction-Delete link should display
+		screenShot.captureScreenShot("BulkAction-Delete link Screenshot"); 
 		Thread.sleep(3000);
 		DeleteCategoryPOM.clcikOnDeleteBtn();
-		screenShot.captureScreenShot("Delete button Screenshot"); //Test Case: Delete Should be get displayed on Bulk Action list box
+		//Test Case: Delete Should be get displayed on Bulk Action list box
+		screenShot.captureScreenShot("Delete button Screenshot"); 
 		DeleteCategoryPOM.clcikOnApplyBtn();
 		Thread.sleep(3000);
+		//Test Case: Categories deleted. Message should get displayed
 		String msg = driver.findElement(By.xpath("//*[@id='message']/p")).getText();
-		System.out.println("Message appears after Deletion: " +msg); //Test Case: Categories deleted. Message should get displayed
+		System.out.println("Message appears after Deletion: " +msg); 
 		
-		//Below code is to find first cell of the table after deletion.
-		WebElement AftrDelTbl = driver.findElement(By.xpath("//*[@id=\"posts-filter\"]"));
-		List < WebElement > rows_table1 = AftrDelTbl.findElements(By.tagName("tr"));
-		for (int row1 = 1; row1 < 2; row1++) 
-		{
-		List < WebElement > Columns_row1 = rows_table1.get(row).findElements(By.tagName("td"));
-			 for (int column1 = 0; column1 < 1; column1++) 
-			 {
-		celltext2 = Columns_row1.get(column1).getText(); //To get the text of first cell of the table, asserted at the end..
+		//To get the text of first cell of the table, asserted at the end..
+		celltext2 = driver.findElement(By.xpath("//tbody/tr/td")).getText();
 		System.out.println("Before deletion row: " +celltext1);
 		System.out.println("After deltion row: " +celltext2); 
-			 }
-		}
-			 }
+
 			 //Test case: selected category should be removed from the categories list
 			 if (celltext1.equals(celltext2))
 			 {
@@ -130,7 +123,6 @@ public class DeleteCategory
 		
 		
 		}
-	}
 }
 		
 

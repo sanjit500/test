@@ -21,7 +21,9 @@ import com.training.generics.ScreenShot;
 import com.training.pom.AddNewTagPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
-
+/*Author: Sanjit Tripathy (IBM)
+Contact: +91-8888862990
+Purpose of this code: TO Verify whether application allows admin to add new tag*/
 public class AddNewTag 
 {
 
@@ -42,6 +44,7 @@ public class AddNewTag
 
 	@BeforeMethod
 	public void setUp() throws Exception {
+		//Before method executes the basic operations like opening Link & Logging in..
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		AddNewTagPOM = new AddNewTagPOM(driver); 
 		baseUrl = properties.getProperty("baseURL");
@@ -66,40 +69,38 @@ public class AddNewTag
 	{
 		AddNewTagPOM.clickPostsBtn(); 
 		AddNewTagPOM.clcikTagsBtn();
-		screenShot.captureScreenShot("TagPageScreenshot"); //Test Case: Tags page with Add New Tag module along with existing tag should get displayed
+		//Test Case: Tags page with Add New Tag module along with existing tag should get displayed
+		screenShot.captureScreenShot("TagPageScreenshot"); 
 		String PageTitle = driver.getTitle();
-		System.out.println("Tag page is being displayed, Page Title: " +PageTitle); //Test Case: Tags page should be displayed
+		//Test Case: Tags page should be displayed
+		System.out.println("Tag page is being displayed, Page Title: " +PageTitle); 
 		AddNewTagPOM.sendName("a");
-		Nametext1 = ("a"); //String Nametext1 is being Asserted at the end.
+		//String Nametext1 is being Asserted at the end.
+		Nametext1 = ("a"); 
+		//Test Case: Entered data in Name textbox should get displayed
 		WebElement text = driver.findElement(By.id("tag-name"));
 	    String EnteredName = text.getAttribute("value");
-		System.out.println("Entered credentials in Name textbox is: " +EnteredName); //Test Case: Entered credentials in Name textbox should get displayed
+		System.out.println("Entered credentials in Name textbox is: " +EnteredName); 
 		AddNewTagPOM.sendSlug("aa");
-		String SlugName = ("aa"); //String SlugName is being Asserted at the end.
+		//String SlugName is being Asserted at the end.
+		String SlugName = ("aa"); 
+		//Test Case: Entered data in Slug textbox should get displayed
 		WebElement text1 = driver.findElement(By.id("tag-slug"));
 	    String EnteredSlug = text1.getAttribute("value");
-		System.out.println("Entered credentials in Slug textbox is: " +EnteredSlug); //Test Case: Entered credentials in Slug textbox should get displayed
+		System.out.println("Entered credentials in Slug textbox is: " +EnteredSlug); 
 		AddNewTagPOM.sendDescription("aaa");
-		String DescriptionDetails = ("aaa"); //String DescriptionDetails is being Asserted at the end.
+		//String DescriptionDetails is being Asserted at the end.
+		String DescriptionDetails = ("aaa"); 
+		//Test Case: Entered data in Description textbox should get displayed
 		WebElement text2 = driver.findElement(By.id("tag-description"));
 	    String EnteredDescription = text2.getAttribute("value");
-		System.out.println("Entered credentials in Description textbox is: " +EnteredDescription); //Test Case: Entered credentials in Description textbox should get displayed
+		System.out.println("Entered credentials in Description textbox is: " +EnteredDescription); 
 		AddNewTagPOM.clickAddNewTagBtn();
 		AddNewTagPOM.clcikTagsBtn();
 		Thread.sleep(3000);
-		//Below code is to find first cell of the table.
-		WebElement Tagtable = driver.findElement(By.xpath("//*[@id=\"posts-filter\"]"));
-		List < WebElement > rows_table = Tagtable.findElements(By.tagName("tr"));
-		for (int row = 1; row < 2; row++) 
-		{
-		List < WebElement > Columns_row = rows_table.get(row).findElements(By.tagName("td"));
-			 for (int column = 0; column < 1; column++) 
-			 {
-		celltext2 = Columns_row.get(column).getText(); //To get the text of first cell of the table, asserted below.
-		System.out.println("Tag added: " +celltext2); //Test Case: Added tag in existing tags module should get displayed
-			 }
-
-		}
+		//To get the text of first cell of the table, asserted below.
+		celltext2 = driver.findElement(By.xpath("//tbody/tr/td")).getText();
+		System.out.println("Tag added: " +celltext2); //Test Case: Added tag in existing tags module/table should get displayed
 		assertEquals(EnteredName, Nametext1);
 		assertEquals(EnteredSlug, SlugName);
 		assertEquals(EnteredDescription, DescriptionDetails);

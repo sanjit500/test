@@ -19,6 +19,9 @@ import com.training.generics.ScreenShot;
 import com.training.pom.AddNewPostPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
+/*Author: Sanjit Tripathy (IBM)
+Contact: +91-8888862990
+Purpose of this code: TO Verify whether application allows admin to add new post into list*/
 
 public class AddNewPost 
 {
@@ -40,6 +43,7 @@ public class AddNewPost
 
 	@BeforeMethod
 	public void setUp() throws Exception {
+		//Before method executes the basic operations like opening Link & Logging in..
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		AddNewPostPOM = new AddNewPostPOM(driver); 
 		baseUrl = properties.getProperty("baseURL");
@@ -65,25 +69,33 @@ public class AddNewPost
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		AddNewPostPOM.clickPostsBtn(); 
 		AddNewPostPOM.clcikaddnewBtn();
-		String PageTitle = driver.getTitle();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wpbody-content\"]/div[3]/h1")));
-		System.out.println("Add New Post Page is being displayed, Page Title: " +PageTitle); //Test Case: Add New Post page should get displayed
+		//Test Case: Add New Post page should get displayed
+		String PageTitle = driver.getTitle();
+		System.out.println("Add New Post Page is being displayed, Page Title: " +PageTitle); 
 		AddNewPostPOM.sendTitle("sanjit123");
-		titletext1 = ("sanjit123"); //String titletext1 is being Asserted at the end.
+		//String titletext1 is being Asserted at the end.
+		titletext1 = ("sanjit123"); 
 		AddNewPostPOM.sendContent("This is to test the addition of a new post");
-		BodyTxt = ("This is to test the addition of a new post"); //String BodyTxt is being Asserted at the end.
+		//String BodyTxt is being Asserted at the end.
+		BodyTxt = ("This is to test the addition of a new post"); 
 		Thread.sleep(3000);
+		//To get the data entered for Title
 	    WebElement text = driver.findElement(By.id("title"));
 	    String EntrTitlTxt = text.getAttribute("value");
-		System.out.println("Entered credentials in 'Enter title here textbox' is: " +EntrTitlTxt); //Test Case: Entered credentials in Enter title here textbox should get displayed
+	    //Test Case: Entered data in Enter title here textbox should get displayed
+		System.out.println("Entered credentials in 'Enter title here textbox' is: " +EntrTitlTxt); 
 	    WebElement text1 = driver.findElement(By.xpath("//*[@id=\"content\"]"));
 	    String EntredBodyText = text1.getAttribute("value");
-		System.out.println("Entered credentials in 'body textbox' is : " +EntredBodyText); //Test Case: Entered credentials in body textbox should get displayed
+	    //Test Case: Entered data in body textbox should get displayed
+		System.out.println("Entered credentials in 'body textbox' is : " +EntredBodyText); 
 		AddNewPostPOM.clickPublishBtn();
-		String DisplMsg = ("Post published. View post"); //String DisplMsg is being Asserted at the end.
+		//String DisplMsg is being Asserted at the end.
+		String DisplMsg = ("Post published. View post"); 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"message\"]/p")));
 		String PublishMsg = driver.findElement(By.xpath("//*[@id=\"message\"]/p")).getText();
-		System.out.println("Message appears after Post Published: " +PublishMsg); //Test Case: Post published. View post message should get displayed
+		//Test Case: Post published. View post message should get displayed
+		System.out.println("Message appears after Post Published: " +PublishMsg); 
 		assertEquals(EntrTitlTxt, titletext1);
 		assertEquals(EntredBodyText, BodyTxt);
 		assertEquals(PublishMsg, DisplMsg);
