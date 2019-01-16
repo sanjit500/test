@@ -27,6 +27,7 @@ import com.training.utility.DriverNames;
 /*Author: Sanjit Tripathy (IBM)
 Contact: +91-8888862990
 Purpose of this code: To verify whether application allows  Admin to add the post into trash*/
+//
 
 public class PostIntoTrash 
 {
