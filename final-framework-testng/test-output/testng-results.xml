@@ -2,28 +2,28 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="38302" started-at="2019-01-13T11:09:12Z" finished-at="2019-01-13T11:09:50Z">
+  <suite name="Default suite" duration-ms="41383" started-at="2019-01-14T13:58:48Z" finished-at="2019-01-14T13:59:29Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="38302" started-at="2019-01-13T11:09:12Z" finished-at="2019-01-13T11:09:50Z">
-      <class name="com.training.sanity.tests.PostIntoTrash">
-        <test-method status="PASS" signature="setUpBeforeClass()[pri:0, instance:com.training.sanity.tests.PostIntoTrash@47c62251]" name="setUpBeforeClass" is-config="true" duration-ms="16" started-at="2019-01-13T11:09:12Z" finished-at="2019-01-13T11:09:12Z">
+    <test name="Default test" duration-ms="41383" started-at="2019-01-14T13:58:48Z" finished-at="2019-01-14T13:59:29Z">
+      <class name="com.training.sanity.tests.AddNewTag">
+        <test-method status="PASS" signature="setUpBeforeClass()[pri:0, instance:com.training.sanity.tests.AddNewTag@47c62251]" name="setUpBeforeClass" is-config="true" duration-ms="15" started-at="2019-01-14T13:58:48Z" finished-at="2019-01-14T13:58:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpBeforeClass -->
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.training.sanity.tests.PostIntoTrash@47c62251]" name="setUp" is-config="true" duration-ms="30347" started-at="2019-01-13T11:09:12Z" finished-at="2019-01-13T11:09:42Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.training.sanity.tests.AddNewTag@47c62251]" name="setUp" is-config="true" duration-ms="29822" started-at="2019-01-14T13:58:48Z" finished-at="2019-01-14T13:59:18Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="validTrashTest()[pri:0, instance:com.training.sanity.tests.PostIntoTrash@47c62251]" name="validTrashTest" duration-ms="6044" started-at="2019-01-13T11:09:42Z" finished-at="2019-01-13T11:09:48Z">
+        <test-method status="PASS" signature="AddNewPostTest()[pri:0, instance:com.training.sanity.tests.AddNewTag@47c62251]" name="AddNewPostTest" duration-ms="9452" started-at="2019-01-14T13:59:18Z" finished-at="2019-01-14T13:59:27Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- validTrashTest -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.training.sanity.tests.PostIntoTrash@47c62251]" name="tearDown" is-config="true" duration-ms="1878" started-at="2019-01-13T11:09:48Z" finished-at="2019-01-13T11:09:50Z">
+        </test-method> <!-- AddNewPostTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.training.sanity.tests.AddNewTag@47c62251]" name="tearDown" is-config="true" duration-ms="2062" started-at="2019-01-14T13:59:27Z" finished-at="2019-01-14T13:59:29Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.training.sanity.tests.PostIntoTrash -->
+      </class> <!-- com.training.sanity.tests.AddNewTag -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

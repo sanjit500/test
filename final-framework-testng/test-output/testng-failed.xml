@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.training.sanity.tests.PostIntoTrash">
+      <class name="com.training.sanity.tests.Testing">
         <methods>
+          <include name="tearDown"/>
+          <include name="AddNewPostTest"/>
           <include name="setUp"/>
           <include name="setUpBeforeClass"/>
-          <include name="validTrashTest"/>
-          <include name="tearDown"/>
         </methods>
-      </class> <!-- com.training.sanity.tests.PostIntoTrash -->
+      </class> <!-- com.training.sanity.tests.Testing -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
